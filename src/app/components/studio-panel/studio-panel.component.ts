@@ -12,7 +12,7 @@ interface StudioOption {
   imports: [LucideAngularModule],
   host: { class: 'flex' },
   template: `
-    <aside class="w-72 bg-white border-l border-gray-200 p-4 flex flex-col">
+    <aside class="w-full h-full bg-white border-l border-gray-200 p-4 flex flex-col">
       <h2 class="font-medium text-gray-800 mb-4">Studio</h2>
 
       <!-- Options Grid -->

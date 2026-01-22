@@ -7,7 +7,7 @@ import { LucideAngularModule, Plus, Sparkles, Search, Globe, Zap, FileText } fro
   imports: [LucideAngularModule],
   host: { class: 'flex' },
   template: `
-    <aside class="w-80 bg-white border-r border-gray-200 p-4 flex flex-col">
+    <aside class="w-full h-full bg-white border-r border-gray-200 p-4 flex flex-col">
       <h2 class="font-medium text-gray-800 mb-4">Sources</h2>
 
       <button class="w-full border border-gray-300 rounded-lg py-2.5 px-4 text-gray-600 hover:bg-gray-50 flex items-center justify-center gap-2 transition-colors mb-3">
