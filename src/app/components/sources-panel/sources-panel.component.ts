@@ -1,14 +1,23 @@
-import { Component, signal } from '@angular/core';
-import { LucideAngularModule, Plus, Sparkles, Search, Globe, Zap, FileText } from 'lucide-angular';
+import { Component, signal, output } from '@angular/core';
+import { LucideAngularModule, Plus, Sparkles, Search, Globe, Zap, FileText, PanelLeftClose } from 'lucide-angular';
 
 @Component({
   selector: 'app-sources-panel',
   standalone: true,
   imports: [LucideAngularModule],
-  host: { class: 'flex' },
+  host: { class: 'flex flex-shrink-0 min-w-[320px] overflow-hidden' },
   template: `
     <aside class="w-full h-full bg-white border-r border-gray-200 p-4 flex flex-col">
-      <h2 class="font-medium text-gray-800 mb-4">Sources</h2>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-medium text-gray-800">Sources</h2>
+        <button
+          class="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+          (click)="collapse.emit()"
+          title="Réduire le panneau"
+        >
+          <lucide-icon [img]="PanelLeftCloseIcon" class="w-[18px] h-[18px] text-gray-500"></lucide-icon>
+        </button>
+      </div>
 
       <button class="w-full border border-gray-300 rounded-lg py-2.5 px-4 text-gray-600 hover:bg-gray-50 flex items-center justify-center gap-2 transition-colors mb-3">
         <lucide-icon [img]="PlusIcon" class="w-[18px] h-[18px]"></lucide-icon>
@@ -62,6 +71,9 @@ export class SourcesPanelComponent {
   readonly GlobeIcon = Globe;
   readonly ZapIcon = Zap;
   readonly FileTextIcon = FileText;
+  readonly PanelLeftCloseIcon = PanelLeftClose;
+
+  collapse = output<void>();
 
   sources = signal<string[]>([]);
 }

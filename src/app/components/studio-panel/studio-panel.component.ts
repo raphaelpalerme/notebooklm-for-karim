@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LucideAngularModule, Headphones, Video, Brain, FileBarChart, BookOpen, HelpCircle, BarChart3, Presentation, Table, PenLine, FileText } from 'lucide-angular';
+import { Component, output } from '@angular/core';
+import { LucideAngularModule, Headphones, Video, Brain, FileBarChart, BookOpen, HelpCircle, BarChart3, Presentation, Table, PenLine, FileText, PanelRightClose } from 'lucide-angular';
 
 interface StudioOption {
   icon: typeof Headphones;
@@ -10,10 +10,19 @@ interface StudioOption {
   selector: 'app-studio-panel',
   standalone: true,
   imports: [LucideAngularModule],
-  host: { class: 'flex' },
+  host: { class: 'flex flex-shrink-0 min-w-[320px] overflow-hidden' },
   template: `
     <aside class="w-full h-full bg-white border-l border-gray-200 p-4 flex flex-col">
-      <h2 class="font-medium text-gray-800 mb-4">Studio</h2>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-medium text-gray-800">Studio</h2>
+        <button
+          class="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+          (click)="collapse.emit()"
+          title="Réduire le panneau"
+        >
+          <lucide-icon [img]="PanelRightCloseIcon" class="w-[18px] h-[18px] text-gray-500"></lucide-icon>
+        </button>
+      </div>
 
       <!-- Options Grid -->
       <div class="grid grid-cols-2 gap-2 mb-6">
@@ -45,6 +54,9 @@ interface StudioOption {
 export class StudioPanelComponent {
   readonly PenLineIcon = PenLine;
   readonly FileTextIcon = FileText;
+  readonly PanelRightCloseIcon = PanelRightClose;
+
+  collapse = output<void>();
 
   readonly studioOptions: StudioOption[] = [
     { icon: Headphones, label: 'Résumé audio' },
